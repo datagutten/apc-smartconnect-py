@@ -1,1 +1,1 @@
-from APCSmartConnect import APCSmartConnect
+from .APCSmartConnect import APCSmartConnect

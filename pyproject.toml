@@ -19,3 +19,6 @@ dynamic = ["version"]
 
 [project.urls]
 "Homepage" = "https://github.com/datagutten/apc-smartconnect-py"
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}

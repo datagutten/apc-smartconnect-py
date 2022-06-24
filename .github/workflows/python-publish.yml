@@ -32,7 +32,7 @@ jobs:
         pip install build
     - name: Write version
       run: |
-        echo "${GITHUB_REF#refs/*/}">apc_smartconnect/VERSION
+        echo "${GITHUB_REF#refs/*/}">VERSION
     - name: Build package
       run: python -m build
     - name: Publish package

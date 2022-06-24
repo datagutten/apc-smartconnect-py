@@ -104,7 +104,7 @@ class APCSmartConnect:
 
     def gateway_info(self, gateway_id):
         return self.get(
-            'gateways/%d' % gateway_id)
+            'gateways/%s' % gateway_id)
 
     def gateway_info_detail(self, gateway_id):
         return self.get(

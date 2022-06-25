@@ -23,23 +23,13 @@ def get_salesforce_keys(page):
 class APCSmartConnect:
     cookies: LWPCookieJar
 
-    def __init__(self, cookie_file):
-        self.cookies = LWPCookieJar(cookie_file)
-        try:
-            self.cookies.load()
-        except FileNotFoundError:
-            pass
-
+    def __init__(self):
         self.session = requests.Session()
-        self.session.cookies = self.cookies
         self.session.headers.update({
             'Accept-Encoding': 'gzip, deflate, br',
             'Accept-Language': 'nb-NO,nb;q=0.9,no;q=0.8,nn;q=0.7,en-US;q=0.6,en;q=0.5,da;q=0.4,und;q=0.3',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36'})
         requests.utils.add_dict_to_cookiejar(self.session.cookies, {'clientSrc': '23.48.94.21'})
-
-    def __del__(self):
-        self.cookies.save()
 
     def get_cookies(self, page):
         cookie = {}

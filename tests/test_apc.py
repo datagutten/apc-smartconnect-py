@@ -4,7 +4,7 @@ import tempfile
 from apc_smartconnect import APCSmartConnect
 
 cookies_temp = tempfile.NamedTemporaryFile()
-apc = APCSmartConnect(os.path.join(tempfile.TemporaryDirectory().name, 'cookies.lwp'))
+apc = APCSmartConnect()
 apc.login(os.getenv('APC_USER'), os.getenv('APC_PASS'))
 
 

@@ -108,7 +108,7 @@ class APCSmartConnect:
 
     def gateway_info_detail(self, gateway_id):
         return self.get(
-            'gateways/%d?collection=input,output,battery,network,main_outlet,switched_outlets' % gateway_id)
+            'gateways/%s?collection=input,output,battery,network,main_outlet,switched_outlets' % gateway_id)
 
     def documentation(self, sku):
         return self.get('documentation/ups/documents?sku=' + sku)

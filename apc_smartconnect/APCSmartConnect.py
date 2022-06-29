@@ -15,6 +15,8 @@ def get_salesforce_keys(page):
     keys = {}
     for key, pattern in patterns.items():
         matches = re.search(pattern, page)
+        if not matches:
+            raise ValueError('Keys not found')
         keys[key] = matches.group(1)
 
     return keys

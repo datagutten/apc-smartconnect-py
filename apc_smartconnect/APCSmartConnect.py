@@ -72,11 +72,14 @@ class APCSmartConnect:
         redirect_url = 'https://secureidentity.schneider-electric.com' + get_redirect_url(
             response.text)
         response = self.session.get(redirect_url)
+        response.raise_for_status()
         jid_step1 = get_jid(response.text, 1)
         jid_step2 = get_jid(response.text, 2)
 
         response1 = self.send_login(response.text, username, jid_step1)
+        response1.raise_for_status()
         response2 = self.send_login(response1.text, password, jid_step2)
+        response2.raise_for_status()
         frontdoor = self.get_meta_redirect(response2.text)
         response_apex = self.get_redirect(frontdoor.text)
         response_setup = self.get_redirect(response_apex.text,

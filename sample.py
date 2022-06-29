@@ -5,7 +5,7 @@ import requests
 
 from apc_smartconnect import APCSmartConnect
 
-smart = APCSmartConnect('cookies.lwp')
+smart = APCSmartConnect()
 
 # Try to query using saved cookies
 try:

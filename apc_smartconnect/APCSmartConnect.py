@@ -67,6 +67,8 @@ class APCSmartConnect:
         response = self.session.get('https://smartconnect.apc.com/auth/login',
                                     allow_redirects=False)
         # self.session.cookies.update(response.cookies)
+        if response.headers['Location'][0:4] != 'http':
+            raise ValueError('Location header is not a valid URL')
         response = self.session.get(response.headers['Location'])
         self.get_cookies(response.text)
 

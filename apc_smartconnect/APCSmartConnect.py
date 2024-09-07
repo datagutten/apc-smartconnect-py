@@ -47,6 +47,8 @@ class APCSmartConnect:
 
     def get_meta_redirect(self, page):
         matches = re.search(r'<meta name="Location" content="(.+?)"', page)
+        if not matches and page.find('captcha.error') > -1:
+            raise RuntimeError('Captcha required')
         url = matches.group(1)
         return self.session.get(url)
 

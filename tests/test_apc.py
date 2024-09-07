@@ -10,5 +10,5 @@ apc.login(os.getenv('APC_USER'), os.getenv('APC_PASS'))
 
 def test_gateways():
     gateways = apc.gateways()
-    assert type(gateways) == list
-    assert type(gateways[0]['deviceId']) == str
+    assert type(gateways['gateways']) == list
+    assert type(gateways['gateways'][0]['deviceId']) == str

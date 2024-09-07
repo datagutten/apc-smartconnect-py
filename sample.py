@@ -11,5 +11,5 @@ smart = APCSmartConnect()
 smart.login(sys.argv[1], sys.argv[2])
 
 gateways = smart.gateways()  # Fetch all gateways (UPSs)
-for gateway in gateways:
+for gateway in gateways['gateways']:
     pprint(smart.gateway_info(gateway['deviceId']))

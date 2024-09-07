@@ -1,3 +1,4 @@
+import json
 import re
 from http.cookiejar import LWPCookieJar
 
@@ -23,8 +24,6 @@ def get_salesforce_keys(page):
 
 
 class APCSmartConnect:
-    cookies: LWPCookieJar
-
     def __init__(self):
         self.session = requests.Session()
         self.session.headers.update({
@@ -32,6 +31,21 @@ class APCSmartConnect:
             'Accept-Language': 'nb-NO,nb;q=0.9,no;q=0.8,nn;q=0.7,en-US;q=0.6,en;q=0.5,da;q=0.4,und;q=0.3',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36'})
         requests.utils.add_dict_to_cookiejar(self.session.cookies, {'clientSrc': '23.48.94.21'})
+
+    def load_cookies(self, file: str):
+        """
+        Load cookiejar from a json encoded dict
+        """
+        with open(file) as fp:
+            requests.utils.add_dict_to_cookiejar(self.session.cookies, json.load(fp))
+
+    def save_cookies(self, file: str):
+        """
+        Save cookiejar to a json encoded dict
+        """
+        cookies = requests.utils.dict_from_cookiejar(self.session.cookies)
+        with open(file, 'w') as fp:
+            json.dump(cookies, fp)
 
     def get_cookies(self, page):
         cookie = {}
